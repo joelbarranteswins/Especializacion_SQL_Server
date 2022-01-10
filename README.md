@@ -1,8 +1,39 @@
-# Sample GitLab Project
+# Especializacion SQL server - Sistemas Uni
 
-This sample project shows how a project in GitLab looks for demonstration purposes. It contains issues, merge requests and Markdown files in many branches,
-named and filled with lorem ipsum.
+this an specialization I took in 2021
 
-You can look around to get an idea how to structure your project and, when done, you can safely delete this project.
+### What is this repository for? ###
 
-[Learn more about creating GitLab projects.](https://docs.gitlab.com/ee/gitlab-basics/create-project.html)
+* Abstracts
+* Homeworks
+* Exams
+
+### How do I get set up?
+
+* Summary of set up
+* Configuration
+* Dependencies
+* Database configuration
+* Deployment instructions
+
+### Contribution guidelines
+
+* guidelines
+
+### Feel free if you wanna download it 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
