@@ -1,0 +1,16 @@
+CU
+ - Emitir Fotocheck
+ - Registrar su asistencia
+ - Registrar salida
+ - Imprimir las asistencias
+ - enviar email falta y tardanzas
+
+Actores
+ - Jefe Cordinador
+ - Alumno
+ - Coordinador de salon
+ - Padre o Apoderado
+
+Entidades
+ - Fotocheck
+ - Asistencia

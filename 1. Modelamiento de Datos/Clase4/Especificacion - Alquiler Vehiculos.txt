@@ -1,0 +1,101 @@
+Ejemplo
+
+1. Identificar las entidades que existen en un
+   negocio de 'Alquileres de Autos'.
+
+   Solucion:
+   Inventario o lista de entidades:
+
+   Automovil, Cliente, Empleado, Registro de
+   Alquiler, Boleta o Factura.
+
+2. Identificación de atributos de las entidades
+
+   Automovil
+     placa de registro / matrícula  CP
+     marca
+     modelo
+     color
+     combustible
+     potencia
+
+   Cliente
+     codigo de cliente / documento de identidad CP
+     apellidos
+     nombres
+     direccion
+     telefono
+
+   Empleado
+     codigo de empleado / documento de identidad  CP
+     apellidos
+     nombres
+     telefono
+     cargo / rol
+
+   Registro de Alquiler / Cuaderno de registro 
+     numeracion   CP
+     fecha y hora
+     vehiculo alquilado
+     cliente
+     fecha inicio de alquiler
+     fecha fin de alquiler
+     tiempo alquiler
+     costo por unidad de tiempo
+     costo del alquiler
+     empleado
+
+   Boleta / Factura
+     nro boleta/factura  CP
+     fecha
+     datos del cliente
+     descripción del alquiler
+     costo del alquiler
+
+3. Identicar el atributo que identificaría como valor
+   único 
+
+4. Modelo lógico
+
+   Automovil
+     placa : String     CP
+     marca : String  no nulo
+     modelo : String no nulo
+     color : String  no nulo
+     combustible : String no nulo
+     potencia  : String nulo/blanco 
+
+   Persona
+     Documento de Identidad : String CP
+     apellidos : String
+     nombres  : String
+     direccion  : String
+     telefono  : String
+
+   Cliente
+     codigo de cliente : String Clave Foránea referencia de Persona(Documento de Identidad) CP
+     Fecha incripción : Date
+
+
+   Empleado
+     codigo de empleado : String Clave Foránea referencia de Persona(Documento de Identidad) CP
+     cargo  : String
+
+   Registro de Alquiler / Cuaderno de registro 
+     numeracion  : numérico   CP
+     fecha y hora : Date
+     placa : String Clave Foránea referencia de Automovil(placa)  
+     codigo de cliente : String Clave Foránea referencia de Cliente(Codigo de cliente)  
+     fecha inicio de alquiler : Date
+     fecha fin de alquiler : Date
+     tiempo alquiler : numerico
+     costo por unidad de tiempo : numerico
+     costo del alquiler : numerico
+     codigo de empleado : String Clave Foránea referencia de Empleado(Codigo de empleado)  
+
+   Boleta / Factura
+     numero : numerico CP
+     fecha : Date
+     codigo de cliente : String Clave Foránea referencia de Cliente(Codigo de cliente)  
+     numeracion  : numérico Clave Foránea referencia de Registro de Alquiler(numeracion)  
+     costo del alquiler

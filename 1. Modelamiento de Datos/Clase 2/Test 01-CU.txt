@@ -1,0 +1,8 @@
+Test 01-CU
+
+Inicio                 :  10:52hrs  14/nov
+Fin                    :  11:27hrs  14/nov
+Enviar email solamente con las capturas de las imagénes
+de los CUs de Sistema  :  juanluis.herencia@gmail.com
+Asunto:                :  MD Test 01
+Puntaje                :  +6ptos en N1 y N2 si todo Ok

@@ -1,0 +1,14 @@
+Sistema de Asistencia de Alumnos
+--------------------------------
+
+Realizar el diagrama de casos de uso de Sistema 
+de la siguiente narración:
+El Jefe Coordinador emitirá un fotocheck a los 
+alumnos. En el ingreso el alumno registrará su 
+asistencia mediante un lector de fotocheck.
+Durante la salida el alumno registrará su salida 
+mediante un lector de fotocheck.
+Al final del día los coordinadores de salón
+imprimirán las asistencias de los alumnos, los 
+mismos que enviarán por email las tardanzas y 
+faltas a los padres o apoderados.

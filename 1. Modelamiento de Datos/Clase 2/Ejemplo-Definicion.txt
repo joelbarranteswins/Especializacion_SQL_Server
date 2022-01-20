@@ -1,0 +1,78 @@
+Ejemplo
+-------
+
+Especificar (indicar atributos y métodos) las siguientes 
+clases: Cliente, Producto (Farmacia), Libro, Curso
+
+Tipos de datos
+--------------
+Numéricos: para indicar datos de tipo numérico
+           int, enteros
+           float, reales (con decimales)
+           money, moneda/dinero
+Fecha    : Date
+Texto    : para indicar secuencia de caracteres
+           String
+Booleanos: indicar valores excluyentes
+           Bool, Si/No, Falso/Verdadero, False/True,...
+
+
+Cliente
+  // Atributos
+  codigo cliente : int
+  nombres        : String
+  apellidos      : String
+  telefono       : String
+  estado         : String ("Vigente", "De baja definitiva", "De baja temporal")
+  // Métodos
+  registrar()
+  consultar()
+  modificar()
+  eliminar()
+  ponerCodigo()  // setters, asignar un valor a un atributo
+  ponerNombres()
+  ponerApellidos()
+  ...
+  obtenerCodigo() // getters, obtener el valor de un atributo
+  obtenerNombres()
+  ...
+  modificarEstado() // métodos del negocio
+
+
+Producto (Farmacia)
+  codigo producto : int
+  nombre  : String
+  descripcion : String
+  presentacion : String
+  tipo    : String
+  precio  : money
+  calidad : String
+  categoría : String 
+  estado    : String
+  marca     : String
+  stock     : int
+  unidad    : String
+  color     : String
+  fecha fabricacion : Date
+  fecha vencimiento : Date
+// Método/Operacion
+  codificar()
+  registrar()
+  ponerCodigo()
+  modificarPrecio()
+  darDeBaja()
+  obtenerStock()
+  estaVencido()  // Si/No
+  verificarVencimiento() 
+  
+
+Libro
+  codigo libro  : int
+  titulo        : String
+  autor         : String
+  editorial     : String
+  fecha publicacion : Date
+
+Curso
+  codigo curso : int
+  nombre       : String

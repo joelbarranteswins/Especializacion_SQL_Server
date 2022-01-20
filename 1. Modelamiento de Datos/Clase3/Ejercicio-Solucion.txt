@@ -1,0 +1,53 @@
+Clases
+  Cliente 
+  Pedido
+  Transportista
+  Combo      // podría ser clase
+
+Cliente
+  codigo : int
+  nombre : String
+  dirección : String
+  teléfono : String 
+  // operaciones
+  mostrar_datos()
+  modificar_direccion()
+
+Pedido
+  nro_pedido : int
+  combo  :  Combo // proviene de la clase Combo
+  cantidad : int
+  precio : float 
+  fecha y hora : Date
+  estado : String
+  cliente : Cliente // proviene de la clase Cliente
+  transportista : Transportista // proviene de una clase
+  // operaciones
+  numerar_pedido()
+  tomar_pedido()
+  modificar_estado()
+  consultar_estado()
+  mostrar_pedido()
+  eliminar_pedido()
+  calcular_total()
+  asignar_transportista_disponible()
+  empaquetar_pedido() // mecánico/manual
+  obtener_datos_clientes()
+  modificar_combo()
+  asignar_combo()
+  modificar_cantidad()
+  modificar_precio()
+
+
+Transportista
+  placa  : String
+  nombre : String
+  disponibilidad : Booleano // Si/No
+  // operaciones
+  consultar_disponibilidad()
+  modificar_dispobilidad()
+  mostrar_transportista()
+  
+Combo
+  nro : int
+  // operaciones
