@@ -12,21 +12,6 @@
 3. [Schemas](#3-schemas)
 4. [Transact-SQL](#4-transact-sql)
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
 
 #### Anexo:
 this part will in the final section, by now it will be here
@@ -40,8 +25,6 @@ if you wanna get more about sql, just click on the next links
 
 
 <div style="page-break-after: always;"></div>
-
-
 
 
 
@@ -298,7 +281,7 @@ exec sp_help 'Ventas.vendedor'
 ~~~
 
 <center>
-<img src="./img/ventas.vendedor_data_types.png" width=900 >
+<img src="./imgs/ventas.vendedor_data_types.png" width=900 >
 </center>
 
 [comment]: <> (BREAK THE PAGE)
