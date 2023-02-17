@@ -1,0 +1,9 @@
+Test 02-Clases
+
+Inicio  : 12:36hrs 21/nov
+Fin     : 13:10hrs 21/nov
+Email   : juanluis.herencia@gmail.com
+Asunto  : MD Test02
+          Enviar captura de imagen solamente
+          y especificación textual
+Puntaje : +8ptos si todo OK para las Notas 3 y 4

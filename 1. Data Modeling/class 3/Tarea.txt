@@ -1,0 +1,25 @@
+Tarea
+
+
+Realizar los diagramas de secuencia y comunicacion (colaboracion),
+dentro del proyecto "Diagrama Flujos"
+
+Al terminar el diagrama de secuencia usar menu 
+   Tools/Generate Default Comunication Diagram
+para generar el diagrama de comunicación correspondiente.
+
+Plazo   :  sabado 27/11  23:59hrs
+Email   : juanluis.herencia@gmail.com
+          Enviar solamente la captura de las imagenes
+Asunto  : MD Tarea Clase 3
+Punatje : +3ptos
+
+
+Proxima clase:
+--------------
+
+Tener instalado Erwin
+Tener instalado/activado MS Access (cualquier versión)
+
+Leer los 2 primeros capítulos del libro Fundamentos de Bases de Datos
+de Silverchatz.

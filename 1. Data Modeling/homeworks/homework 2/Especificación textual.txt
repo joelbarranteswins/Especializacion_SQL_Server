@@ -1,0 +1,142 @@
+class Venta()
+   	//Atributos
+	nombreCliente: String
+	dniCliente: String
+   	tipoDePago: String  = ['contado', 'crédito']
+    	tipoDeRecibo: String = ['Boleta', 'Factura Electrónica', 'control interno']
+    	formaDeVenta: String = ['peso', 'monto']
+	fechaVenta: Date
+	montoDeVenta: Money or float
+	puntoDeVenta: String
+    
+    	//Metodos
+	registrarVenta()
+	registrarClienteYArticulo()
+ 	generarReporteDeVenta() -> (fecha, cliente, punto de venta, caja, tipo de comprobante)
+	consultarStock() -> tipos y cantidad de combustible
+ 	generarListaDeClientes()
+	obtenerOferta()
+	anularDeVenta()
+
+
+class CuentasPorCobrar()
+	//Atributos
+    	numeroRecibo: String  
+    	nombreCliente: String 
+    	fechaVenta: Date 
+    	cuentaCliente: String = [credito, debito]
+
+   	//Metodos
+	generarRegistroDeClientes()
+	generarRegistroDePagos()
+	generarReportesPorCobrar()
+	generarReporteDeEstadoDeCuentaDelCliente()
+	generarReporteDeRecibo()
+
+class Compra()
+	//Atributos
+   	proveedor: String  
+   	nombreProducto: String 
+	cantidad: float
+    	tipoDePago: String  = ['contado', 'crédito']
+    	fechaDeCompra: Date
+    	puntoDeCompra: String
+
+    	//Metodos
+	generarDeCuentasPorPagar()
+	abastecerStockDeAlmacen()
+	registrarProveedor()
+	generarReportePorProveedor()
+	generarProductoMasComprado()
+	generarReporteDeCompra()
+	anularCompra()
+	
+
+class CuentaPorPagar()
+    	//Atributos
+    	numeroCompra: int
+    	nombreProveedor: String 
+    	fechaDeCompra: Date
+    
+    	//Metodos
+	generarReportePorPagar()
+	generarPagosPorCompras()
+	generarPagosPorProveedor()
+	generarRegistroDePagos()
+	generarReporteDeEstadoDeCuenta()
+
+
+class Caja()
+	//Atributos
+    	puntoDeVenta: String 
+    	fechaApertura: Date
+	fechaCierre: Date
+
+    	//Metodos
+	registrarCaja()
+	generarRecibos()
+ 	generarRegistroDeIngresos()
+	generarRegistroDeEgresos()
+	registrarTransferenciaEntreCajas()
+	
+	
+class Almacen()
+	//Atributos 
+   	nombreProducto: String 
+    	fechaDeEntrada: Date
+    	fechaDeSalida: Date
+	codigoDeBarra: String
+    
+    	//Metodos
+ 	registrarProducto()
+	generarReporteDeStock()
+	generarReporteDeEntrarYSalidaDeProducto()
+	gestionarCodigoDeBarra()
+	cambiarPrecio()
+	
+	
+class Artículo()
+	//Atributos
+    	nombre: String 
+    	marca: String
+    	codigoDeBarra: String
+    	unidades: float 
+	puntoDeVenta: String
+    
+    	//Metodos
+	registrarArticulo()
+	registrarMarca()
+	registrarUnidad()
+	generarReportesProCategoria() -> (precio, marca, proveedor)
+	
+
+
+class FacturaciónElectronica()
+	//Atributos
+    	ruc: String  
+    	fechaVenta: Date
+	puntoDeVenta: String
+	montoDeVenta: Money 
+    	
+    
+    	//Metodos
+	generarFacturaElectronica()
+	generarBoletaElectronica()
+	generaReporteDeComprobanteElectornico()
+	generarImpresionDeComprobante()
+	EnviarComporbantePorCorreo()
+
+
+class Aplicación()
+	//Atributos
+    	nombreDeEmpresa: String  
+    	usuario: String
+    	clave: String 
+    
+    	//Metodos
+	registrarEmpresa()
+	gestionarUsuarios()
+	generarCompras()
+	
+	
+	

@@ -1,0 +1,26 @@
+Ejercicios
+----------
+
+1. Modele un diagrama de Casos de uso de Negocio
+   de la siguiente narración.
+   Un Conductor comete una falta al Reglamento de 
+   Infracciones de Tránsito. Un Policía de Tránsito 
+   observa el hecho, detiene al conductor, le 
+   solicita su Licencia de Conducir y le registra 
+   una Papeleta de Infracción. Al final el Policía 
+   deja continuar su viaje al Conductor.
+   Idenficar los hechos y participantes.
+
+2. Después de Registrarse la Papeleta de Infracción,
+   el Conductor tiene que realizar el pago por dicha
+   papeleta, donde después un funcionario de la SAT
+   cambiará el estado de la papeleta.
+
+   Realizar las especificación textual y el diagrama
+   de Casos de Uso (dentro de mismo proyecto, pero
+   en una nueva hoja)
+
+   Cuando terminen, poner en chat de Zoom 'Terminé'
+
+   Plazo   :  12:15hrs 07/nov
+   Puntaje :  +4ptos

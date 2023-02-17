@@ -1,0 +1,15 @@
+Listas de CU
+Hechos, Acciones, Actividades
+  CU05-Registrar Papeleta de Infracción
+  CU07-Pagar papeleta
+  CU08-Cambiar estado
+
+Lista de Actores
+Particpantes activos de los Casos de Uso
+  A01-Conductor 
+  A03-funcionario de la SAT
+
+Lista de Entes/entidades adicionales
+Otros elementos que participan en los Casos de Uso
+  E03-Papeleta de Infracción
+

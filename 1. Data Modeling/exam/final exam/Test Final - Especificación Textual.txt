@@ -1,0 +1,44 @@
+1. Identificar las entidades que existen en un
+   negocio de 'Sistemas Uni'.
+	
+	Lista de Entidades:
+	Alumno, Curso, Curso Programado, 
+	Profesor, curso matriculado
+
+2. Identificación de atributos de las entidades
+3. Identicar el atributo que identificaría como valor
+   único 
+4. Modelo lógico
+
+   Curso
+     codigo : String CP
+     nombre: String 
+
+   Persona
+     Documento de Identidad : String CP
+     apellidos : String
+     nombres  : String
+     direccion  : String
+     telefono  : String
+
+   Alumno
+     codigo de alumno : String Clave Foránea referencia de Persona(Documento de Identidad) CP
+     fecha de inscription : String
+
+   Profesor
+     codigo de profesor : String Clave Foránea referencia de Persona(Documento de Identidad) CP 
+     fecha de inscription : String
+     cargo: String
+
+   Curso Programado
+     numeracion: numerico CP
+     fecha de inicio : Date
+     codigo de curso : String Clave Foranea referencia de Curso (codigo)
+     codigo de profesor: String Clave Foranea referencia de Profesor (codigo de profesor)
+     horario: Date
+     horas: numerico
+
+   curso matriculado
+     numeracion : numérico Clave Foránea referencia de curso Programado (numeracion)  CP
+     codigo de alumno  : String Clave Foránea referencia de Alumno (codigo de alumno)
+

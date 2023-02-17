@@ -1,0 +1,19 @@
+Diagrama de casos de uso de Sistema
+(Sistema informático)
+
+Lista de CUs
+  - Emitir Fotocheck
+  - Registrar asistencia
+  - Registrar salida
+  - Imprimir asistencia
+  - Enviar por email las tardanzas y faltas
+
+Lista de Actores
+  - Alumno
+  - Jefe coordinador
+  - Coordinador de salón
+  - Padre o Apoderado
+
+Otras entidades
+  - Fotocheck
+  - Asistencia

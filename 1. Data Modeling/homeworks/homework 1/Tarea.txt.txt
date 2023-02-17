@@ -1,0 +1,21 @@
+                            Tarea
+                            -----
+
+Realice el diagrama de Casos de Uso de Negocio de la siguiente narración:
+
+  PUBLICACION DE ARTICULOS PARA UNA REVISTA.
+     Cuando un artículo va a ser publicado. Primero debe ser revisado. 
+     Considerar cuando el artículo es revisado es posible que este sea 
+     rechazado, aprobado o que se requieran correcciones por parte del
+     autor. Una vez aprobado el artículo se realiza la redacción del 
+     artículo y en paralelo se realiza el diseño, y cuando ambas acti-
+     vidades estén completadas se realiza la diagramación final.
+     Después de la diagramación se pasa a la publicación del artículo.
+
+
+Plazo de entrega : sabado 13/nov 23:59hrs
+Enviar email     : juanluis.herencia@gmail.com
+                   Enviar la especificación textual (block de notas) y 
+                   la captura de la imagen de la solución
+Asunto           : MD domingo-Tarea 1
+Puntaje          : +3ptos  si todo OK
