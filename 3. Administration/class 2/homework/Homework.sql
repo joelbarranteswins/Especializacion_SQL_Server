@@ -48,6 +48,10 @@ Debe utilizarse un almacén PROVEEDORES que recoge la información de los provee
 de las piezas que sirven. 
 */
 
+/* PREGUNTA 3:
+Elabore su BD Relacional 
+*/
+
 -- Uso de la Base de datos Almacen
 -- USE Almacen
 -- GO
@@ -68,6 +72,10 @@ MAXSIZE=10MB,
 FILEGROWTH=2MB
 )TO FILEGROUP DATA_1
 GO
+
+
+--Agregando Schemas y tablas necesarios a la base de datos
+
 
 CREATE SCHEMA PROVEEDORES
 GO
@@ -92,7 +100,7 @@ CREATE TABLE PROVEEDORES.ProveedoresComponentes (
 );
 GO
 
---Agregando Schemas necesarios a la base de datos
+
 
 CREATE SCHEMA ALMACEN
 GO
@@ -190,6 +198,3 @@ GO
 
 
 
-/* PREGUNTA 3:
-Elabore su BD Relacional 
-*/
