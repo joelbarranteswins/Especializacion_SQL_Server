@@ -1,0 +1,21 @@
+1. Identificar las entidades que existen en un
+   negocio de 'Sistemas Uni'.
+	
+	Lista de Entidades:
+	* Tienda (especializada componentes electronicos)
+	* clientes
+	* Almacen
+	* Proveedores
+	* Componentes
+	* Componentes defectuosos
+	* Pedidios
+	* Ventas
+	* Facturas
+
+2. Identificación de atributos de las entidades
+3. Identicar el atributo que identificaría como valor
+   único 
+4. Modelo lógico
+
+
+
