@@ -1,0 +1,120 @@
+USE [BD_LATAM]
+GO
+SET IDENTITY_INSERT [dbo].[Avion] ON 
+GO
+INSERT [dbo].[Avion] ([Id], [Modelo], [Matricula], [Activo]) VALUES (1, N'AIRBUS A300', NULL, 0)
+GO
+INSERT [dbo].[Avion] ([Id], [Modelo], [Matricula], [Activo]) VALUES (2, N'BOEING 737', NULL, 1)
+GO
+INSERT [dbo].[Avion] ([Id], [Modelo], [Matricula], [Activo]) VALUES (3, N'AIRBUS A340', NULL, 1)
+GO
+INSERT [dbo].[Avion] ([Id], [Modelo], [Matricula], [Activo]) VALUES (4, N'AIRBUS A350', NULL, 1)
+GO
+INSERT [dbo].[Avion] ([Id], [Modelo], [Matricula], [Activo]) VALUES (5, N'BOEING 747', NULL, 1)
+GO
+SET IDENTITY_INSERT [dbo].[Avion] OFF
+GO
+SET IDENTITY_INSERT [dbo].[AsientoAvion] ON 
+GO
+INSERT [dbo].[AsientoAvion] ([Id], [IdAvion], [Nombre], [Activo]) VALUES (1, 1, N'A1', 1)
+GO
+INSERT [dbo].[AsientoAvion] ([Id], [IdAvion], [Nombre], [Activo]) VALUES (2, 1, N'A2', 1)
+GO
+INSERT [dbo].[AsientoAvion] ([Id], [IdAvion], [Nombre], [Activo]) VALUES (3, 1, N'A3', 1)
+GO
+INSERT [dbo].[AsientoAvion] ([Id], [IdAvion], [Nombre], [Activo]) VALUES (4, 2, N'B1', 1)
+GO
+INSERT [dbo].[AsientoAvion] ([Id], [IdAvion], [Nombre], [Activo]) VALUES (5, 2, N'B2', 1)
+GO
+INSERT [dbo].[AsientoAvion] ([Id], [IdAvion], [Nombre], [Activo]) VALUES (6, 2, N'B3', 1)
+GO
+INSERT [dbo].[AsientoAvion] ([Id], [IdAvion], [Nombre], [Activo]) VALUES (7, 3, N'C1', 1)
+GO
+INSERT [dbo].[AsientoAvion] ([Id], [IdAvion], [Nombre], [Activo]) VALUES (8, 3, N'C2', 1)
+GO
+INSERT [dbo].[AsientoAvion] ([Id], [IdAvion], [Nombre], [Activo]) VALUES (9, 3, N'C3', 1)
+GO
+INSERT [dbo].[AsientoAvion] ([Id], [IdAvion], [Nombre], [Activo]) VALUES (10, 4, N'D1', 1)
+GO
+INSERT [dbo].[AsientoAvion] ([Id], [IdAvion], [Nombre], [Activo]) VALUES (11, 4, N'D2', 1)
+GO
+INSERT [dbo].[AsientoAvion] ([Id], [IdAvion], [Nombre], [Activo]) VALUES (12, 4, N'D3', 1)
+GO
+INSERT [dbo].[AsientoAvion] ([Id], [IdAvion], [Nombre], [Activo]) VALUES (13, 5, N'E1', 1)
+GO
+INSERT [dbo].[AsientoAvion] ([Id], [IdAvion], [Nombre], [Activo]) VALUES (14, 5, N'E2', 1)
+GO
+INSERT [dbo].[AsientoAvion] ([Id], [IdAvion], [Nombre], [Activo]) VALUES (15, 5, N'E3', 1)
+GO
+SET IDENTITY_INSERT [dbo].[AsientoAvion] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Pasajero] ON 
+GO
+INSERT [dbo].[Pasajero] ([Id], [Nombres], [ApellidoPaterno], [ApellidoMaterno], [Dni], [Activo]) VALUES (1, N'JUAN', N'PEREZ', N'PINO', N'01020304', 1)
+GO
+INSERT [dbo].[Pasajero] ([Id], [Nombres], [ApellidoPaterno], [ApellidoMaterno], [Dni], [Activo]) VALUES (2, N'ISABEL', N'RODRIGUEZ', N'LOZANO', N'16164789', 1)
+GO
+INSERT [dbo].[Pasajero] ([Id], [Nombres], [ApellidoPaterno], [ApellidoMaterno], [Dni], [Activo]) VALUES (3, N'LUCY', N'MATIAS', N'POVIS', N'88750102', 1)
+GO
+INSERT [dbo].[Pasajero] ([Id], [Nombres], [ApellidoPaterno], [ApellidoMaterno], [Dni], [Activo]) VALUES (4, N'PEDRO', N'VARGAS', N'JARAMILLO', N'56551487', 1)
+GO
+SET IDENTITY_INSERT [dbo].[Pasajero] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Ciudad] ON 
+GO
+INSERT [dbo].[Ciudad] ([Id], [Nombre], [Activo]) VALUES (1, N'LIMA', 1)
+GO
+INSERT [dbo].[Ciudad] ([Id], [Nombre], [Activo]) VALUES (2, N'CUZCO', 1)
+GO
+INSERT [dbo].[Ciudad] ([Id], [Nombre], [Activo]) VALUES (3, N'TRUJILLO', 1)
+GO
+INSERT [dbo].[Ciudad] ([Id], [Nombre], [Activo]) VALUES (4, N'IQUITOS', 1)
+GO
+INSERT [dbo].[Ciudad] ([Id], [Nombre], [Activo]) VALUES (5, N'AREQUIPA', 1)
+GO
+INSERT [dbo].[Ciudad] ([Id], [Nombre], [Activo]) VALUES (6, N'TACNA', 0)
+GO
+SET IDENTITY_INSERT [dbo].[Ciudad] OFF
+GO
+SET IDENTITY_INSERT [dbo].[TipoServicio] ON 
+GO
+INSERT [dbo].[TipoServicio] ([Id], [Nombre], [Activo]) VALUES (1, N'VIP', 1)
+GO
+INSERT [dbo].[TipoServicio] ([Id], [Nombre], [Activo]) VALUES (2, N'ECONOMICO', 1)
+GO
+INSERT [dbo].[TipoServicio] ([Id], [Nombre], [Activo]) VALUES (3, N'TURISTA', 1)
+GO
+INSERT [dbo].[TipoServicio] ([Id], [Nombre], [Activo]) VALUES (4, N'INVITADO', 0)
+GO
+SET IDENTITY_INSERT [dbo].[TipoServicio] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Tarifa] ON 
+GO
+INSERT [dbo].[Tarifa] ([Id], [IdCiudadOrigen], [IdCiudadDestino], [IdTipoServicio], [Precio], [Activo]) VALUES (1, 1, 2, 1, CAST(300.00 AS Decimal(10, 2)), 1)
+GO
+INSERT [dbo].[Tarifa] ([Id], [IdCiudadOrigen], [IdCiudadDestino], [IdTipoServicio], [Precio], [Activo]) VALUES (2, 1, 2, 2, CAST(200.00 AS Decimal(10, 2)), 1)
+GO
+INSERT [dbo].[Tarifa] ([Id], [IdCiudadOrigen], [IdCiudadDestino], [IdTipoServicio], [Precio], [Activo]) VALUES (3, 1, 2, 3, CAST(250.00 AS Decimal(10, 2)), 1)
+GO
+INSERT [dbo].[Tarifa] ([Id], [IdCiudadOrigen], [IdCiudadDestino], [IdTipoServicio], [Precio], [Activo]) VALUES (4, 2, 1, 1, CAST(305.00 AS Decimal(10, 2)), 1)
+GO
+INSERT [dbo].[Tarifa] ([Id], [IdCiudadOrigen], [IdCiudadDestino], [IdTipoServicio], [Precio], [Activo]) VALUES (5, 2, 1, 2, CAST(205.00 AS Decimal(10, 2)), 1)
+GO
+INSERT [dbo].[Tarifa] ([Id], [IdCiudadOrigen], [IdCiudadDestino], [IdTipoServicio], [Precio], [Activo]) VALUES (6, 2, 1, 3, CAST(255.00 AS Decimal(10, 2)), 1)
+GO
+SET IDENTITY_INSERT [dbo].[Tarifa] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Vuelo] ON 
+GO
+INSERT [dbo].[Vuelo] ([Id], [IdTarifa], [Fecha], [Hora], [IdAvion], [Activo]) VALUES (1, 1, N'30-10-2019', N'18:30', 1, 1)
+GO
+INSERT [dbo].[Vuelo] ([Id], [IdTarifa], [Fecha], [Hora], [IdAvion], [Activo]) VALUES (2, 5, N'01-11-2019', N'05:00', 5, 1)
+GO
+INSERT [dbo].[Vuelo] ([Id], [IdTarifa], [Fecha], [Hora], [IdAvion], [Activo]) VALUES (3, 2, N'28-10-2019', N'00:00', 2, 1)
+GO
+INSERT [dbo].[Vuelo] ([Id], [IdTarifa], [Fecha], [Hora], [IdAvion], [Activo]) VALUES (4, 1, N'27-11-2019', N'12:00', 3, 1)
+GO
+INSERT [dbo].[Vuelo] ([Id], [IdTarifa], [Fecha], [Hora], [IdAvion], [Activo]) VALUES (5, 3, N'26-10-2019', N'23:45', 4, 1)
+GO
+SET IDENTITY_INSERT [dbo].[Vuelo] OFF
+GO
