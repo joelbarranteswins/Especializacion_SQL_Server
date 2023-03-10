@@ -213,3 +213,5 @@ GO
 --EJECUTAR LA FUNCION
 SELECT * FROM PEDIDOS_POR_CLIENTE('C001')
 SELECT * FROM PEDIDOS_POR_CLIENTE('C002')
+
+--hola--------------------------------------------------------------------------------------------------------------------------
