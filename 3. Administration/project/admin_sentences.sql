@@ -66,24 +66,24 @@ CREATE TABLE OPERACIONES.Empleados (
 );
 
 INSERT INTO OPERACIONES.Empleados 
-(id_empleado, nombre_empleado, cargo_empleado, salario_empleado, fecha_creacion, fecha_actualizacion)
+(id_empleado, nombre_empleado, cargo_empleado, salario_empleado, fecha_actualizacion)
 VALUES 
-('E001', 'Juan Perez', 'jefe de ventas', 3000.00, GETDATE(), GETDATE()),
-('E002', 'Ana Garcia', 'asesor de ventas', 2500.00, GETDATE(), GETDATE()),
-('E003', 'Luis Gomez', 'practicante de ventas', 900.00, GETDATE(), GETDATE()),
-('E004', 'Maria Rodriguez', 'gerente de ventas', 3000.00, GETDATE(), GETDATE()),
-('E005', 'Pedro Hernandez', 'operario', 1500.00, GETDATE(), GETDATE()),
-('E006', 'Jorge Torres', 'Ayudante de operario', 1200.00, GETDATE(), GETDATE()),
-('E007', 'Sofia Ramirez', 'operario', 1500.00, GETDATE(), GETDATE()),
-('E008', 'Carlos Chavez', 'gerente de almacen', 3000.00, GETDATE(), GETDATE()),
-('E009', 'Fernanda Garcia', 'ayudante de almacen', 1200.00, GETDATE(), GETDATE()),
-('E010', 'Luz Hernandez', 'ayudante de almacen', 1200.00, GETDATE(), GETDATE()),
-('E011', 'Mario Gonzalez', 'ayudante de almacen', 1200.00, GETDATE(), GETDATE()),
-('E012', 'Laura Torres', 'practicante de almacen', 900.00, GETDATE(), GETDATE()),
-('E013', 'Gabriel Diaz', 'operario', 1500.00, GETDATE(), GETDATE()),
-('E014', 'Paulina Castro', 'operario', 1500.00, GETDATE(), GETDATE()),
-('E015', 'Diana Martinez', 'operario', 1500.00, GETDATE(), GETDATE());
-
+('E001', 'Juan Perez', 'jefe de ventas', 3000.00, GETDATE()),
+('E002', 'Ana Garcia', 'asesor de ventas', 2500.00, GETDATE()),
+('E003', 'Luis Gomez', 'practicante de ventas', 900.00, GETDATE()),
+('E004', 'Maria Rodriguez', 'gerente de ventas', 3000.00, GETDATE()),
+('E005', 'Pedro Hernandez', 'operario', 1500.00,  GETDATE()),
+('E006', 'Jorge Torres', 'Ayudante de operario', 1200.00, GETDATE()),
+('E007', 'Sofia Ramirez', 'operario', 1500.00, GETDATE()),
+('E008', 'Carlos Chavez', 'gerente de almacen', 3000.00, GETDATE()),
+('E009', 'Fernanda Garcia', 'ayudante de almacen', 1200.00, GETDATE()),
+('E010', 'Luz Hernandez', 'ayudante de almacen', 1200.00, GETDATE()),
+('E011', 'Mario Gonzalez', 'ayudante de almacen', 1200.00, GETDATE()),
+('E012', 'Laura Torres', 'practicante de almacen', 900.00, GETDATE()),
+('E013', 'Gabriel Diaz', 'operario', 1500.00, GETDATE()),
+('E014', 'Paulina Castro', 'operario', 1500.00, GETDATE()),
+('E015', 'Diana Martinez', 'operario', 1500.00, GETDATE());
+GO
 
 -- Crear tabla para los vehiculos
 CREATE TABLE OPERACIONES.Vehiculos (
@@ -137,14 +137,13 @@ VALUES
 
 
 
-
-
+-- Crear tabla para los proveedores_producto
 CREATE TABLE PROVEEDORES.Proveedores_Producto (
   id_proveedor_producto int PRIMARY KEY,
   nombre_proveedor_producto nvarchar(50),
   descripcion_proveedor_producto nvarchar(200),
   precio_proveedor_producto decimal(10, 2),
-  id_proveedor char(4) FOREIGN KEY REFERENCES PROVEEDORES.Proveedores(id_proveedor),
+  id_proveedor char(7) FOREIGN KEY REFERENCES PROVEEDORES.Proveedores(id_proveedor),
   fecha_creacion DATETIME DEFAULT GETDATE(),
   fecha_actualizacion DATETIME NOT NULL
 );
@@ -161,6 +160,7 @@ CREATE TABLE INVENTARIO.Productos (
   fecha_actualizacion DATETIME NOT NULL
 );
 
+
 INSERT INTO INVENTARIO.Productos
 (id_producto, nombre_producto, descripcion_producto, precio_unitario_producto, ingredientes_producto, fecha_actualizacion)
 VALUES
@@ -170,20 +170,22 @@ VALUES
 ('Prod004', 'tamales', 'hecho de mote reventado', 3.00, 'maíz pelado, manteca de cerdo, cebolla, achiote, carne de cerdo, vinagre, sal, pimienta, ají panca', GETDATE());
 
 
+
 -- Crear tabla para los ingredientes
 CREATE TABLE INVENTARIO.Ingredientes (
   id_ingrediente int PRIMARY KEY,
   nombre_ingrediente varchar(50) NOT NULL,
-  id_proveedor char(4) FOREIGN KEY REFERENCES PROVEEDORES.Proveedores(id_Proveedor),
+  id_proveedor char(7) FOREIGN KEY REFERENCES PROVEEDORES.Proveedores(id_Proveedor),
   id_proveedor_producto int FOREIGN KEY REFERENCES PROVEEDORES.Proveedores_Producto(id_proveedor_producto),
   fecha_creacion DATETIME DEFAULT GETDATE(),
   fecha_actualizacion DATETIME NOT NULL
 );
 
+
 -- Crear tabla para los detalles de los productos e ingredientes
 CREATE TABLE INVENTARIO.Detalles_Producto_Ingrediente (
   id_detalle int PRIMARY KEY,
-  id_producto int NOT NULL,
+  id_producto char(7) NOT NULL,
   id_ingrediente int NOT NULL,
   cantidad decimal(10,2) NOT NULL,
   CONSTRAINT fk_producto FOREIGN KEY (id_producto) REFERENCES Inventario.Productos(id_producto),
@@ -192,10 +194,11 @@ CREATE TABLE INVENTARIO.Detalles_Producto_Ingrediente (
   fecha_actualizacion DATETIME NOT NULL
 );
 
+
 -- Crear tabla para las solicitudes de compra
 CREATE TABLE INVENTARIO.Solicitudes_Compra (
   id_solicitud int PRIMARY KEY,
-  id_producto int NOT NULL,
+  id_producto char(7) NOT NULL,
   cantidad decimal(10,2) NOT NULL,
   fecha_solicitud datetime NOT NULL,
   CONSTRAINT fk_producto_solicitud FOREIGN KEY (id_producto) REFERENCES Inventario.Productos(id_producto),
@@ -208,12 +211,13 @@ CREATE TABLE INVENTARIO.Ordenes_Compra (
   id_orden int PRIMARY KEY,
   id_solicitud int NOT NULL,
   fecha_orden datetime NOT NULL,
-  id_proveedor char(4),
+  id_proveedor char(7),
   CONSTRAINT fk_solicitud_orden FOREIGN KEY (id_solicitud) REFERENCES Inventario.Solicitudes_Compra(id_solicitud),
   CONSTRAINT fk_proveedor_orden FOREIGN KEY (id_proveedor) REFERENCES PROVEEDORES.Proveedores(id_Proveedor),
   fecha_creacion DATETIME DEFAULT GETDATE(),
   fecha_actualizacion DATETIME NOT NULL
 );
+
 
 -- Crear tabla para los detalles de las �rdenes de compra
 CREATE TABLE INVENTARIO.Detalles_Orden_Compra (
@@ -237,6 +241,8 @@ CREATE TABLE VENTAS.Clientes (
   fecha_creacion DATETIME DEFAULT GETDATE(),
   fecha_actualizacion DATETIME NOT NULL
 );
+
+DROP TABLE VENTAS.Clientes
 
 INSERT INTO VENTAS.Clientes (id_cliente, tipo_cliente, nombre_cliente, direccion_cliente, telefono_cliente, fecha_actualizacion)
 VALUES 
@@ -305,6 +311,7 @@ CREATE TABLE VENTAS.Detalles_Pedido (
   fecha_actualizacion DATETIME NOT NULL
 );
 
+
 --CREAR 15 REGISTROS DE LA TABLA DE Ventas.Detalles_Pedido
 INSERT INTO VENTAS.Detalles_Pedido
 (id_detalle_pedido, id_pedido, id_producto, cantidad, fecha_actualizacion)
@@ -324,7 +331,6 @@ VALUES
 (13, 'Ped013', 'Prod002', 500, GETDATE()),
 (14, 'Ped014', 'Prod002', 600, GETDATE()),
 (15, 'Ped015', 'Prod004', 200, GETDATE());
-
 
 
 
