@@ -79,9 +79,10 @@ CREATE TABLE PROVEEDORES.Proveedores (
 INSERT INTO PROVEEDORES.Proveedores
 (id_proveedor, nombre_proveedor, direccion_proveedor, telefono_proveedor, ciudad_proveedor, pais_proveedor, fecha_actualizacion)
 VALUES
-('Prov001', 'Expotadores camal SAC', 'av. mariategui', '976162551', 'Lima', 'Perú', GETDATE()),
-('Prov002', 'Amazon andes export SAC', 'CAL. RUY DIAZ 239. Callao.. C.P. callao1, Callao', '7342725', 'Callao', 'Perú', GETDATE()),
-('Prov003', 'bakels', 'Av. La Arboleda 298 Urb. Santa Raquel Lima 03', '16184640', 'Lima', 'Perú', GETDATE());
+('Prov001', 'La Vaquita Mu', 'Av. Canadá 3359 - La Victoria', '970428484', 'Lima', 'Perú', GETDATE()),
+('Prov002', 'Gusto's', 'Los Ajenjos M-E L-7 - Ate Vitarte', '97342725', 'Lima', 'Perú', GETDATE()),
+('Prov003', 'Tu Mercado SAC', 'Av. Petit Thouars 1175 - Lince', '936923085', 'Lima', 'Perú', GETDATE()),
+('Prov004', 'Tío Sergio SAC', 'Vargas Machuca 556 - Santa Anita', '933680027', 'Lima', 'Perú', GETDATE());
 
 
 
@@ -96,6 +97,32 @@ CREATE TABLE PROVEEDORES.Proveedores_Producto (
   fecha_actualizacion DATETIME NOT NULL
 );
 GO
+
+INSERT INTO PROVEEDORES.Proveedores_Producto
+(id_proveedor_producto, nombre_proveedor_producto, descripcion_proveedor_producto, precio_proveedor_prodcuto, id_proveedor, fecha_actualizacion)
+(1,'leche','1 litro de leche',4.50,'Prov001',GETDATE()),
+(2,'mantequilla','1 kg de mantequilla', 48.80,'Prov001,GETDATE()),
+(3,'esencia de vainilla','1 litro de esencia de vainilla', 10.90,’Prov002’, GETDATE()),
+(4,'fermento','1/2 litro de fermento', 58.90,’Prov002’,GETDATE()),
+(5,'harina','1 kg de harina’', 58.90,’Prov002’,GETDATE()),
+(6,'azúcar','1 kg de azúcar’, 4.90,’Prov002’,GETDATE()),
+(7,'sal','1 kg de sal’, 1.80,’Prov002’,GETDATE()),
+(8,'canela','1 kg de canela’, 36.90,’Prov002’,GETDATE()),
+(9,'anis','1 kg de anis’, 23.50,’Prov002’,GETDATE()),
+(10,'vinagre','1 litro de vinagre’, 4.70,’Prov002’,GETDATE()),
+(11,'fresa','1 kg de fresa, 3.19,’Prov003’,GETDATE()),
+(12,'choclo','1 unidad de choclo’, 2.00,’Prov003’,GETDATE()),
+(13,'maíz pelado','1 kg de maíz pelado’, 240.00,’Prov003’,GETDATE()),
+(14,'cebolla','1 kg de cebolla, 2.29,’Prov003’,GETDATE()),
+(15,'achiote','1 kg de achiote’, 43.00,’Prov003’,GETDATE()),
+(16,'camote','1 kg de camote’, 4.99,’Prov003’,GETDATE()),
+(17,'pasas','1 kg de pasas’, 145.00,’Prov003’,GETDATE()),
+(18,'ají panca','1 kg de ají panca’, 13.90,’Prov003’,GETDATE()),
+(19,'pimienta','10 gr de pimienta’, 1.00,’Prov003’,GETDATE());
+(20,'manteca de cerdo','1 kg de manteca de cerdo’, 89.90,’Prov004’,GETDATE()),
+(21,’carne de cerdo',’1 kg de carne de cerdo’, 17.50,’Prov004’,GETDATE()),
+
+
 
 -- Crear tabla para los productos
 CREATE TABLE INVENTARIO.Productos (
@@ -128,6 +155,33 @@ CREATE TABLE INVENTARIO.Ingredientes (
   fecha_creacion DATETIME DEFAULT GETDATE(),
   fecha_actualizacion DATETIME NOT NULL
 );
+
+INSERT INTO INVENTARIO.Ingredientes
+(id_ingrediente, nomnbre_ingrediente, id_proveedor, id_proveedor_producto, fecha_actualizacion)
+VALUES
+(1,'leche','Prov001',1, GETDATE()),
+(2,'mantequilla','Prov001',2, GETDATE()),
+(3,'esencia de vainilla','Prov002',3, GETDATE()),
+(4,'fermento','Prov002',4, GETDATE()),
+(5,'harina','Prov002',5, GETDATE()),
+(6,'azúcar','Prov002',6, GETDATE()),
+(7,'sal,'Prov002',7, GETDATE()),
+(8,'canela','Prov002',8, GETDATE()),
+(9,'anis','Prov002',9, GETDATE()),
+(10,'vinagre','Prov002',10, GETDATE()),
+(11,'fresa','Prov003',11, GETDATE()),
+(12,'choclo','Prov003',12, GETDATE()),
+(13,'maíz pelado','Prov003',13, GETDATE()),
+(14,'cebolla','Prov003',14, GETDATE()),
+(15,'achiote','Prov003',15, GETDATE()),
+(16,'camote','Prov003',16, GETDATE()),
+(17,'pasas','Prov003',17, GETDATE()),
+(18,'ají panca','Prov003',18, GETDATE()),
+(19,'pimienta','Prov003',19, GETDATE());
+(19,'manteca de cerdo','Prov004',20, GETDATE()),
+(21,'carne de cerdo','Prov004',21, GETDATE()),
+
+
 
 
 -- Crear tabla para los detalles de los productos e ingredientes
