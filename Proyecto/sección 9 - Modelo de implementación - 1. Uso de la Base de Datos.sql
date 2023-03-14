@@ -100,27 +100,28 @@ GO
 
 INSERT INTO PROVEEDORES.Proveedores_Producto
 (id_proveedor_producto, nombre_proveedor_producto, descripcion_proveedor_producto, precio_proveedor_prodcuto, id_proveedor, fecha_actualizacion)
+VALUES
 (1,'leche','1 litro de leche',4.50,'Prov001',GETDATE()),
-(2,'mantequilla','1 kg de mantequilla', 48.80,'Prov001,GETDATE()),
-(3,'esencia de vainilla','1 litro de esencia de vainilla', 10.90,’Prov002’, GETDATE()),
-(4,'fermento','1/2 litro de fermento', 58.90,’Prov002’,GETDATE()),
-(5,'harina','1 kg de harina’', 58.90,’Prov002’,GETDATE()),
-(6,'azúcar','1 kg de azúcar’, 4.90,’Prov002’,GETDATE()),
-(7,'sal','1 kg de sal’, 1.80,’Prov002’,GETDATE()),
-(8,'canela','1 kg de canela’, 36.90,’Prov002’,GETDATE()),
-(9,'anis','1 kg de anis’, 23.50,’Prov002’,GETDATE()),
-(10,'vinagre','1 litro de vinagre’, 4.70,’Prov002’,GETDATE()),
-(11,'fresa','1 kg de fresa, 3.19,’Prov003’,GETDATE()),
-(12,'choclo','1 unidad de choclo’, 2.00,’Prov003’,GETDATE()),
-(13,'maíz pelado','1 kg de maíz pelado’, 240.00,’Prov003’,GETDATE()),
-(14,'cebolla','1 kg de cebolla, 2.29,’Prov003’,GETDATE()),
-(15,'achiote','1 kg de achiote’, 43.00,’Prov003’,GETDATE()),
-(16,'camote','1 kg de camote’, 4.99,’Prov003’,GETDATE()),
-(17,'pasas','1 kg de pasas’, 145.00,’Prov003’,GETDATE()),
-(18,'ají panca','1 kg de ají panca’, 13.90,’Prov003’,GETDATE()),
-(19,'pimienta','10 gr de pimienta’, 1.00,’Prov003’,GETDATE());
-(20,'manteca de cerdo','1 kg de manteca de cerdo’, 89.90,’Prov004’,GETDATE()),
-(21,’carne de cerdo',’1 kg de carne de cerdo’, 17.50,’Prov004’,GETDATE()),
+(2,'mantequilla','1 kg de mantequilla',48.80,'Prov001,GETDATE()),
+(3,'esencia de vainilla','1 litro de esencia de vainilla',10.90,'Prov002', GETDATE()),
+(4,'fermento','1/2 litro de fermento',58.90,'Prov002',GETDATE()),
+(5,'harina','1 kg de harina',5.90,'Prov002',GETDATE()),
+(6,'azúcar','1 kg de azúcar',4.90,'Prov002',GETDATE()),
+(7,'sal','1 kg de sal',1.80,'Prov002',GETDATE()),
+(8,'canela','1 kg de canela',36.90,'Prov002',GETDATE()),
+(9,'anis','1 kg de anis',23.50,'Prov002',GETDATE()),
+(10,'vinagre','1 litro de vinagre',4.70,'Prov002',GETDATE()),
+(11,'fresa','1 kg de fresa',3.19,'Prov003',GETDATE()),
+(12,'choclo','1 unidad de choclo',2.00,'Prov003',GETDATE()),
+(13,'maíz pelado','1 kg de maíz pelado',240.00,'Prov003',GETDATE()),
+(14,'cebolla','1 kg de cebolla',2.29,'Prov003',GETDATE()),
+(15,'achiote','1 kg de achiote',43.00,'Prov003',GETDATE()),
+(16,'camote','1 kg de camote',4.99,'Prov003',GETDATE()),
+(17,'pasas','1 kg de pasas',145.00,'Prov003',GETDATE()),
+(18,'ají panca','1 kg de ají panca',13.90,'Prov003',GETDATE()),
+(19,'pimienta','10 gr de pimienta',1.00,'Prov003',GETDATE());
+(20,'manteca de cerdo','1 kg de manteca de cerdo',89.90,'Prov004',GETDATE()),
+(21,'carne de cerdo','1 kg de carne de cerdo',17.50,'Prov004',GETDATE()),
 
 
 
