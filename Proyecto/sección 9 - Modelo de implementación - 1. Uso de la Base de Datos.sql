@@ -363,7 +363,6 @@ CREATE TABLE VENTAS.Clientes (
   fecha_actualizacion DATETIME NOT NULL
 );
 
-DROP TABLE VENTAS.Clientes
 
 INSERT INTO VENTAS.Clientes (id_cliente, tipo_cliente, nombre_cliente, direccion_cliente, telefono_cliente, fecha_actualizacion)
 VALUES 
