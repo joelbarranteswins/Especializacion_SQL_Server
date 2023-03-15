@@ -77,13 +77,27 @@ CREATE TABLE PROVEEDORES.Proveedores (
 
 
 INSERT INTO PROVEEDORES.Proveedores
-(id_proveedor, nombre_proveedor, direccion_proveedor, telefono_proveedor, ciudad_proveedor, pais_proveedor, fecha_actualizacion)
+(id_proveedor, nombre_proveedor, 
+direccion_proveedor, telefono_proveedor, 
+ciudad_proveedor, pais_proveedor, 
+fecha_actualizacion)
 VALUES
 ('Prov001', 'La Vaquita Mu', 'Av. Canadá 3359 - La Victoria', '970428484', 'Lima', 'Perú', GETDATE()),
-('Prov002', 'Gusto's', 'Los Ajenjos M-E L-7 - Ate Vitarte', '97342725', 'Lima', 'Perú', GETDATE()),
+('Prov002', 'Gusto''s', 'Los Ajenjos M-E L-7 - Ate Vitarte', '97342725', 'Lima', 'Perú', GETDATE()),
 ('Prov003', 'Tu Mercado SAC', 'Av. Petit Thouars 1175 - Lince', '936923085', 'Lima', 'Perú', GETDATE()),
-('Prov004', 'Tío Sergio SAC', 'Vargas Machuca 556 - Santa Anita', '933680027', 'Lima', 'Perú', GETDATE());
-
+('Prov004', 'Tío Sergio SAC', 'Vargas Machuca 556 - Santa Anita', '933680027', 'Lima', 'Perú', GETDATE()),
+('Prov005', 'Expotadores camal SAC', 'av. mariategui', '976162551', 'Lima', 'Perú', GETDATE()),
+('Prov006', 'Amazon andes export SAC', 'CAL. RUY DIAZ 239. Callao.. C.P. callao1, Callao', '7342725', 'Callao', 'Perú', GETDATE()),
+('Prov007', 'bakels', 'Av. La Arboleda 298 Urb. Santa Raquel Lima 03', '16184640', 'Lima', 'Perú', GETDATE()),
+('Prov008', 'Corporacion Vega Productores Santa Anita', 'Av. La Cultura s/n Psje. B Puesto 13 Santa Anita', '(01) 3547522', 'Lima', 'Perú', GETDATE()),
+('Prov009', 'Inversiones Ray S.A.C.', 'Avenida Mercado de Productores Santa Anita', '946-531478', 'Lima', 'Perú', GETDATE()),
+('Prov010', 'Fas Group Carnes y Máss', 'av. los héroes s/n CIUDAD DE DIOS. San Juan De Miraflore', '997462847', 'Lima', 'Perú', GETDATE()),
+('Prov011', 'Carnes Sabrosas Peru', 'calle los blanquillos 299. Los Olivos.. C.P. 051', '4856826', 'Lima', 'Perú', GETDATE()),
+('Prov012', 'Campo grande perú', 'Jr. Teofilo Castillo 771', '(51) 987 635', 'Lima', 'Perú', GETDATE()),
+('Prov013', 'Inversiones agroindustrial', 'Av. Javier Prado Este 1234', '51-789-0123', 'Lima', 'Perú', GETDATE()),
+('Prov014', 'Agro exportadora ruiz e.i.r.l.', 'Calle Los Ficus 456', '51-012-345', 'Lima', 'Perú', GETDATE()),
+('Prov015', 'Comvenperu', 'Jirón Cuzco 789', '998-345-678', 'Lima', 'Perú', GETDATE());
+GO
 
 
 -- Crear tabla para los proveedores_producto
@@ -98,12 +112,14 @@ CREATE TABLE PROVEEDORES.Proveedores_Producto (
 );
 GO
 
-INSERT INTO PROVEEDORES.Proveedores_Producto
-(id_proveedor_producto, nombre_proveedor_producto, descripcion_proveedor_producto, precio_proveedor_prodcuto, id_proveedor, fecha_actualizacion)
+INSERT INTO PROVEEDORES.Proveedores_Producto 
+(id_proveedor_producto, nombre_proveedor_producto, 
+descripcion_proveedor_producto, precio_proveedor_producto, 
+id_proveedor, fecha_actualizacion)
 VALUES
 (1,'leche','1 litro de leche',4.50,'Prov001',GETDATE()),
-(2,'mantequilla','1 kg de mantequilla',48.80,'Prov001,GETDATE()),
-(3,'esencia de vainilla','1 litro de esencia de vainilla',10.90,'Prov002', GETDATE()),
+(2,'mantequilla','1 kg de mantequilla',48.80,'Prov001',GETDATE()),
+(3,'esencia de vainilla','1 litro de esencia de vainilla',10.90,'Prov002',GETDATE()),
 (4,'fermento','1/2 litro de fermento',58.90,'Prov002',GETDATE()),
 (5,'harina','1 kg de harina',5.90,'Prov002',GETDATE()),
 (6,'azúcar','1 kg de azúcar',4.90,'Prov002',GETDATE()),
@@ -119,9 +135,9 @@ VALUES
 (16,'camote','1 kg de camote',4.99,'Prov003',GETDATE()),
 (17,'pasas','1 kg de pasas',145.00,'Prov003',GETDATE()),
 (18,'ají panca','1 kg de ají panca',13.90,'Prov003',GETDATE()),
-(19,'pimienta','10 gr de pimienta',1.00,'Prov003',GETDATE());
+(19,'pimienta','10 gr de pimienta',1.00,'Prov003',GETDATE()),
 (20,'manteca de cerdo','1 kg de manteca de cerdo',89.90,'Prov004',GETDATE()),
-(21,'carne de cerdo','1 kg de carne de cerdo',17.50,'Prov004',GETDATE()),
+(21,'carne de cerdo','1 kg de carne de cerdo',17.50,'Prov004',GETDATE());
 
 
 
@@ -157,8 +173,9 @@ CREATE TABLE INVENTARIO.Ingredientes (
   fecha_actualizacion DATETIME NOT NULL
 );
 
+
 INSERT INTO INVENTARIO.Ingredientes
-(id_ingrediente, nomnbre_ingrediente, id_proveedor, id_proveedor_producto, fecha_actualizacion)
+(id_ingrediente, nombre_ingrediente, id_proveedor, id_proveedor_producto, fecha_actualizacion)
 VALUES
 (1,'leche','Prov001',1, GETDATE()),
 (2,'mantequilla','Prov001',2, GETDATE()),
@@ -166,7 +183,7 @@ VALUES
 (4,'fermento','Prov002',4, GETDATE()),
 (5,'harina','Prov002',5, GETDATE()),
 (6,'azúcar','Prov002',6, GETDATE()),
-(7,'sal,'Prov002',7, GETDATE()),
+(7,'sal','Prov002',7, GETDATE()),
 (8,'canela','Prov002',8, GETDATE()),
 (9,'anis','Prov002',9, GETDATE()),
 (10,'vinagre','Prov002',10, GETDATE()),
@@ -178,10 +195,9 @@ VALUES
 (16,'camote','Prov003',16, GETDATE()),
 (17,'pasas','Prov003',17, GETDATE()),
 (18,'ají panca','Prov003',18, GETDATE()),
-(19,'pimienta','Prov003',19, GETDATE());
-(19,'manteca de cerdo','Prov004',20, GETDATE()),
-(21,'carne de cerdo','Prov004',21, GETDATE()),
-
+(19,'pimienta','Prov003',19, GETDATE()),
+(20,'manteca de cerdo','Prov004',20, GETDATE()),
+(21,'carne de cerdo','Prov004',21, GETDATE());
 
 
 
@@ -198,6 +214,32 @@ CREATE TABLE INVENTARIO.Detalles_Producto_Ingrediente (
 );
 
 
+INSERT INTO INVENTARIO.Detalles_Producto_Ingrediente
+(id_detalle, id_producto, id_ingrediente, cantidad, fecha_actualizacion)
+VALUES
+(1,'Prod001',1,1.00,GETDATE()),
+(2,'Prod001',3,1.00,GETDATE()),
+(3,'Prod001',11,1.00,GETDATE()),
+(4,'Prod002',5,1.00,GETDATE()),
+(5,'Prod002',6,1.00,GETDATE()),
+(6,'Prod002',7,1.00,GETDATE()),
+(7,'Prod002',8,1.00,GETDATE()),
+(8,'Prod002',9,1.00,GETDATE()),
+(9,'Prod002',9,1.00,GETDATE()),
+(10,'Prod002',13,1.00,GETDATE()),
+(11,'Prod003',16,1.00,GETDATE()),
+(12,'Prod003',6,1.00,GETDATE()),
+(13,'Prod004',18,1.00,GETDATE()),
+(14,'Prod004',19,1.00,GETDATE()),
+(15,'Prod004',20,1.00,GETDATE()),
+(16,'Prod004',21,1.00,GETDATE()),
+(17,'Prod004',13,1.00,GETDATE()),
+(18,'Prod004',7,1.00,GETDATE()),
+(19,'Prod004',14,1.00,GETDATE()),
+(20,'Prod004',15,1.00,GETDATE());
+
+
+
 -- Crear tabla para las solicitudes de compra
 CREATE TABLE INVENTARIO.Solicitudes_Compra (
   id_solicitud int PRIMARY KEY,
@@ -209,7 +251,33 @@ CREATE TABLE INVENTARIO.Solicitudes_Compra (
   fecha_actualizacion DATETIME NOT NULL
 );
 
--- Crear tabla para las �rdenes de compra
+
+INSERT INTO INVENTARIO.Solicitudes_Compra
+(id_solicitud, id_producto, cantidad, fecha_solicitud, fecha_actualizacion)
+VALUES
+(1,'Prod001',200,'2023-01-01',GETDATE()),
+(2,'Prod002',300,'2023-01-02',GETDATE()),
+(3,'Prod003',400,'2023-01-03',GETDATE()),
+(4,'Prod004',500,'2023-01-04',GETDATE()),
+(5,'Prod001',200,'2023-01-05',GETDATE()),
+(6,'Prod002',300,'2023-01-06',GETDATE()),
+(7,'Prod003',400,'2023-01-07',GETDATE()),
+(8,'Prod004',500,'2023-01-08',GETDATE()),
+(9,'Prod001',200,'2023-01-09',GETDATE()),
+(10,'Prod002',300,'2023-01-10',GETDATE()),
+(11,'Prod003',400,'2023-01-11',GETDATE()),
+(12,'Prod004',500,'2023-01-12',GETDATE()),
+(13,'Prod001',200,'2023-01-13',GETDATE()),
+(14,'Prod002',300,'2023-01-14',GETDATE()),
+(15,'Prod003',400,'2023-01-15',GETDATE()),
+(16,'Prod004',500,'2023-01-16',GETDATE()),
+(17,'Prod001',200,'2023-01-17',GETDATE()),
+(18,'Prod002',300,'2023-01-18',GETDATE()),
+(19,'Prod003',400,'2023-01-19',GETDATE()),
+(20,'Prod004',500,'2023-01-20',GETDATE());
+
+
+-- Crear tabla para las ordenes de compra
 CREATE TABLE INVENTARIO.Ordenes_Compra (
   id_orden int PRIMARY KEY,
   id_solicitud int NOT NULL,
@@ -220,6 +288,31 @@ CREATE TABLE INVENTARIO.Ordenes_Compra (
   fecha_creacion DATETIME DEFAULT GETDATE(),
   fecha_actualizacion DATETIME NOT NULL
 );
+
+
+INSERT INTO INVENTARIO.Ordenes_Compra
+(id_orden, id_solicitud, fecha_orden, id_proveedor, fecha_actualizacion)
+VALUES
+(1,1,'2023-01-01','Prov001',GETDATE()),
+(2,2,'2023-01-02','Prov002',GETDATE()),
+(3,3,'2023-01-03','Prov003',GETDATE()),
+(4,4,'2023-01-04','Prov004',GETDATE()),
+(5,5,'2023-01-05','Prov001',GETDATE()),
+(6,6,'2023-01-06','Prov002',GETDATE()),
+(7,7,'2023-01-07','Prov003',GETDATE()),
+(8,8,'2023-01-08','Prov004',GETDATE()),
+(9,9,'2023-01-09','Prov001',GETDATE()),
+(10,10,'2023-01-10','Prov002',GETDATE()),
+(11,11,'2023-01-11','Prov003',GETDATE()),
+(12,12,'2023-01-12','Prov004',GETDATE()),
+(13,13,'2023-01-13','Prov001',GETDATE()),
+(14,14,'2023-01-14','Prov002',GETDATE()),
+(15,15,'2023-01-15','Prov003',GETDATE()),
+(16,16,'2023-01-16','Prov004',GETDATE()),
+(17,17,'2023-01-17','Prov001',GETDATE()),
+(18,18,'2023-01-18','Prov002',GETDATE()),
+(19,19,'2023-01-19','Prov003',GETDATE()),
+(20,20,'2023-01-20','Prov004',GETDATE());
 
 
 -- Crear tabla para los detalles de las �rdenes de compra
@@ -233,6 +326,31 @@ CREATE TABLE INVENTARIO.Detalles_Orden_Compra (
   fecha_creacion DATETIME DEFAULT GETDATE(),
   fecha_actualizacion DATETIME NOT NULL
 );
+
+
+INSERT INTO INVENTARIO.Detalles_Orden_Compra
+(id_detalle_orden, id_orden, id_ingrediente, cantidad, fecha_actualizacion)
+VALUES
+(1,1,1,25,GETDATE()),
+(2,2,2,30,GETDATE()),
+(3,3,3,40,GETDATE()),
+(4,4,4,5,GETDATE()),
+(5,5,1,10,GETDATE()),
+(6,6,2,30,GETDATE()),
+(7,7,3,40,GETDATE()),
+(8,8,4,50,GETDATE()),
+(9,9,1,20,GETDATE()),
+(10,10,2,30,GETDATE()),
+(11,11,3,40,GETDATE()),
+(12,12,4,50,GETDATE()),
+(13,13,1,20,GETDATE()),
+(14,14,2,30,GETDATE()),
+(15,15,3,40,GETDATE()),
+(16,16,4,50,GETDATE()),
+(17,17,1,20,GETDATE()),
+(18,18,2,30,GETDATE()),
+(19,19,3,40,GETDATE()),
+(20,20,4,50,GETDATE());
 
 -- Crear tabla para los clientes
 CREATE TABLE VENTAS.Clientes (
