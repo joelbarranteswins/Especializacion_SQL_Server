@@ -1,0 +1,28 @@
+
+/*==============================================================*/
+/*==================RESTAURACIÓN DE BACKUP======================*/
+-- BACKUP COMPRIMIDO
+
+USE ECORP
+GO
+RESTORE DATABASE ECORP
+FROM DISK='C:\database\ECORP_FULL2.BAK'
+WITH REPLACE , NORECOVERY
+GO
+
+-- BACKUP DIFF
+
+RESTORE DATABASE ECORP
+FROM DISK='C:\database\ECORP_DIFF.BAK'
+WITH NORECOVERY
+
+USE ECORP
+GO
+
+-- BACKUP LOG
+RESTORE LOG ECORP
+FROM DISK='C:\database\ECORP_LOG.BAK'
+with norecovery
+GO
+
+RESTORE LOG ECORP
