@@ -708,12 +708,15 @@ en texto plano y pueden ser interceptadas.
 USE ECORP
 GO
 
---CREAREMOS UN NUEVO USUARIO
+--CREAREMOS EL USUARIO 'MANAGER SELLER'
 CREATE LOGIN MANAGERSELLER WITH PASSWORD='t2j8X6$k'
 GO
 
+--CREAREMOS EL USUARIO 'AREA DE OPERACIONES'
+CREATE LOGIN AREAOPERACIONES WITH PASSWORD='12345OPERACIONES'
+GO
 
-/*================USO DE CREDENCIALES Y PERMISOS===================*/
+/*================USO DE CREDENCIALES Y PERMISOS PARA VENTAS===================*/
 --AGREGAR AL USER COMO ADMINISTRADOR
 SP_ADDUSER [MANAGERSELLER], ADMINISTRADOR
 GO
@@ -742,6 +745,26 @@ GRANT CREATE TABLE, CREATE FUNCTION, CREATE PROCEDURE, CREATE VIEW, EXECUTE TO A
 REVOKE CREATE TABLE, CREATE FUNCTION, CREATE PROCEDURE, CREATE VIEW, EXECUTE TO ADMINISTRADOR
 GO
 
+
+/*=========USO DE CREDENCIALES Y PERMISOS PARA EL AREA DE OPERACIONES===========*/
+
+--AGREGAR AL USER COMO ADMINISTRADOR
+SP_ADDUSER [AREAOPERACIONES], ADMINISTRADOR
+GO
+--DAR PERMISOS DE DML A UN USUARIO
+GRANT SELECT, INSERT, UPDATE, DELETE ON OPERACIONES.EMPLEADOS TO ADMINISTRADOR
+GRANT SELECT, INSERT, UPDATE, DELETE ON OPERACIONES.VEHICULOS TO ADMINISTRADOR
+GRANT SELECT, INSERT, UPDATE, DELETE ON PROVEEDORES.proveedores TO ADMINISTRADOR
+GRANT SELECT, INSERT, UPDATE, DELETE ON PROVEEDORES.proveedores_producto TO ADMINISTRADOR
+
+-- DENEGAR PERMISOS
+REVOKE SELECT, INSERT, UPDATE, DELETE ON OPERACIONES.EMPLEADOS  TO ADMINISTRADOR
+REVOKE SELECT, INSERT, UPDATE, DELETE ON OPERACIONES.VEHICULOS TO 	ADMINISTRADOR
+REVOKE SELECT, INSERT, UPDATE, DELETE ON PROVEEDORES.proveedores TO 	ADMINISTRADOR
+REVOKE SELECT, INSERT, UPDATE, DELETE ON PROVEEDORES.proveedores_producto TO 	ADMINISTRADOR
+
+
+
 /*================ROLES DE SERVIDOR===================*/
 
 
@@ -750,6 +773,8 @@ GO
 cualquier tarea en el servidor, incluyendo la creación de bases de datos, la 
 configuración de seguridad y el mantenimiento de la instancia.*/
 
+
+/*======= ROLES DE SERVIDOR COMO MANAGER SELLER=======*/
 
 --AGREGAR AL NUEVO USUARIO COMO SYSADMIN
 
@@ -837,6 +862,8 @@ GO
 
 -- QUITAR AL NUEVO USUARIO COMO BULKADMIN
 SP_DROPSRVROLEMEMBER [MANAGERSELLER],[bulkadmin]
+
+
 GO
 
 /*DB_OWNER*/
@@ -858,6 +885,27 @@ GO
 -- QUITAR AL NUEVO USUARIO COMO DB_DATAREADER
 SP_DROPSRVROLEMEMBER [MANAGERSELLER],[db_datareader]
 GO
+
+/*======= ROLES DE SERVIDOR COMO AREA DE OPERACIONES=======*/
+--AGREGAR AL NUEVO USUARIO COMO SYSADMIN
+
+SP_ADDSRVROLEMEMBER AREAOPERACIONES,[sysadmin]
+
+-- QUITAR RS SYSADMIN
+SP_DROPSRVROLEMEMBER AREAOPERACIONES, [sysadmin]
+GO
+-- AGREGAR RS DBCREATOR, PARA CREAR UNA BD
+SP_ADDSRVROLEMEMBER AREAOPERACIONES,[dbcreator]
+GO
+SP_DROPSRVROLEMEMBER AREAOPERACIONES,[dbcreator]
+GO
+
+-- AGREGAR RS SCURITYADMIN, CREAR UN LOGIN 
+SP_ADDSRVROLEMEMBER AREAOPERACIONES,[securityadmin]
+GO
+
+SP_DROPSRVROLEMEMBER AREAOPERACIONES, [securityadmin]
+
 
 
 
@@ -925,6 +973,7 @@ FROM 'C:\database\Tabla_Pedidos_Clientes.TXT'
 /*==============================================================*/
 --CREA EL SNAPSHOT
 -- RECUERDA USAR EL NOMBRE DEL ARCHIVO Y NO EL NOMBRE DE LA BASE DE DATOS PARA CREAR EL SNAPSHOT
+/*========== SNAPSHOT DE MARZO 2023===================*/
 USE MASTER;
 GO
 
@@ -936,7 +985,17 @@ CREATE DATABASE SNAPSHOT_ECORP_MARCH_2023 ON
 )
 AS SNAPSHOT OF ECORP; --NOMBRE DE LA BASE DE DATOS
 
+/*========== SNAPSHOT QUINCENA DE MARZO 2023===========*/
+USE MASTER;
+GO
 
+
+CREATE DATABASE SNAPSHOT_ECORP_QUINCENA_MARZO_2023 ON 
+(
+    NAME = 'SNAPSHOT_ECORP_MARCH_2023', --NOMBRE DEL ARCHIVO
+    FILENAME = 'C:\database\SNAPSHOT_ECORP_QUINCENA_MARZO_2023.ss'
+)
+AS SNAPSHOT OF ECORP; --NOMBRE DE LA BASE DE DATOS
 
 
 
@@ -944,14 +1003,14 @@ AS SNAPSHOT OF ECORP; --NOMBRE DE LA BASE DE DATOS
 /*==============================================================*/
 
 /*==============================================================*/
- --ABRIR UN NUEVO QUERY DESDE EL NUEVO USUARIO
+ --ABRIR UN NUEVO QUERY DESDE EL NUEVO USUARIO MANAGER SELLER
 USE ECORP
 GO
 
 
 /*==============================================================*/
 /*==========================TRIGGER==============================*/
---CREAR UN TRIGGER PARA ACTUALIZAR LA FECHA DE ACTUALIZACION DE LA TABLA CLIENTES
+--CREAR UN TRIGGER PARA ACTUALIZAR LA FECHA DE ACTUALIZACION DE LA TABLA CLIENTES - USUARIO MANAGER SELLER
 CREATE TABLE VENTAS.Clientes_Auditoria (
   nro_registro int IDENTITY,
   id_cliente char(4),
@@ -966,7 +1025,7 @@ GO
 
 CREATE TRIGGER Ventas_Auditoria
 ON VENTAS.Clientes
-AFTER INSERT, UPDATE, DELETE
+AFTER INSERT, UPDATE, DELETE3
 AS
 	BEGIN
 		DECLARE @fecha DATETIME = GETDATE();
@@ -998,6 +1057,8 @@ AS
 	END;
 GO
 
+
+
 --ELIMINAR TRIGGER
 DROP TRIGGER Ventas_Auditoria
 
@@ -1023,8 +1084,26 @@ SELECT * FROM VENTAS.Clientes;
 SELECT * FROM VENTAS.Clientes_Auditoria;
 GO
 
+--CREAR UN TRIGGER PARA ACTUALIZAR LA FECHA DE ACTUALIZACION DE LA TABLA EMPLEADO- USUARIO AREA DE OPERACIONES
+	CREATE TRIGGER MODIFICA_SALARIO_EMPLEADOS
+ON OPERACIONES.Empleados
+	FOR UPDATE
+	AS
+		if (UPDATE(salario_empleado))
+			BEGIN
+			DECLARE @SALARIOANT DECIMAL (7,2), @SALARIONUE DECIMAL (7,2)
+			SELECT @SALARIOANT=salario_empleado FROM deleted
+			SELECT @SALARIONUE=salario_empleado FROM inserted
+			
+				PRINT 'SE MODIFICO EL SALARIO DE UM EMPLEADO'
+				PRINT 'SALARIO ANTIGUO:' + STR(@SALARIOANT,7,2) --- que me diga el salario antiguo
+				PRINT 'SALARIO NUEVO:' + STR(@SALARIONUE,7,2)
+			END
+
+	GO
+
 /*==============================================================*/
-/*===========================VIEWS==============================*/
+/*=====================VIEWS DE VENTAS-=========================*/
 --CREAR VIEWS
 CREATE VIEW VENTASVIEW AS
 SELECT
@@ -1054,8 +1133,32 @@ GO
 
 
 
+/*===========VIEWS DE PROVEEDORES Y PRODUCTOS=================*/
+
+CREATE VIEW PROVEEDORESyPRODUCTOSVIEW AS
+SELECT 
+dt.id_proveedor_producto AS Proveedor,
+dt.nombre_proveedor_producto AS Producto,
+dt.descripcion_proveedor_producto AS Descripcion,
+dt.precio_proveedor_producto AS Precio,
+dt.fecha_actualizacion AS Fecha_actualizacion,
+dd.nombre_proveedor AS Nombre_Proveedor,
+dd.direccion_proveedor AS Direccion,
+dd.telefono_proveedor AS Telefono,
+dd.ciudad_proveedor AS Ciudad,
+dd.pais_proveedor AS Pais
+FROM
+PROVEEDORES.Proveedores_Producto dt
+JOIN PROVEEDORES.Proveedores dd ON dt.id_proveedor=dd.id_proveedor;
+
+
+SELECT * FROM PROVEEDORESyPRODUCTOSVIEW
+GO
+
+
+
 /*==============================================================*/
-/*=========================PROCEDURE============================*/
+/*=====================PROCEDURE "CLIENTES"======================*/
 --CREAR PROCEDIMIENTOS PARA INSERTAR REGISTROS.
 CREATE PROCEDURE INSERTCLIENTES
 (
@@ -1104,10 +1207,34 @@ WHERE id_cliente = 'C020'
 -- BORRAR PROCEDURE
 DROP PROCEDURE DELETECLIENTES
 
+/*==================PROCEDURE PROVEEDORES====================*/
+GO
+CREATE PROCEDURE INSERTPROVEEDRORES
+(
+	@id_proveedor char(7),
+    @nombre_proveedor nvarchar(50),
+	@direccion_proveedor NVARCHAR(100),
+	@telefono_proveedor NVARCHAR(20),
+	@ciudad_proveedor NVARCHAR(50),
+	@pais_proveedor NVARCHAR(50)
+)
+AS
+
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO PROVEEDORES.Proveedores (id_proveedor, nombre_proveedor, direccion_proveedor, telefono_proveedor,ciudad_proveedor,pais_proveedor, fecha_actualizacion)
+    VALUES (@id_proveedor, @nombre_proveedor, @direccion_proveedor, @telefono_proveedor, @ciudad_proveedor, @pais_proveedor, GETDATE());
+END
+
+--EJECUTAR EL PROCEDIMIENTO
+EXEC INSERTPROVEEDORES
+'Prov016', 'Pampas de Mayo', 'Av. Nicolás de Pierola 601- Ate Vitarte', '(01)6187600', 'Lima', 'Perú', GETDATE()),
+GO
 
 
 /*==============================================================*/
-/*==========================CURSOR==============================*/
+/*======================CURSOR "Ventas"==========================*/
 --CREANDO CURSORES:
 
 --DECLARACION
@@ -1119,7 +1246,7 @@ OPEN LEERCLIENTES
 --SENTENCIAS QUE NOS PERMITEN MOVER ENTRE LOS REGISTROS
 FETCH NEXT FROM LEERCLIENTES
 FETCH PRIOR FROM LEERCLIENTES
-FETCH FIRST FROM LEERCLIENTES
+FETCH FIRST FROM LEERCLIENTESN
 FETCH LAST FROM LEERCLIENTES
 
 -- PARA DEJAR DE UTILIZAR EL CURSOR, LO CERRAMOS
@@ -1129,6 +1256,23 @@ GO
 DEALLOCATE LEERCLIENTES
 GO
 
+/*======================CURSOR "Proveedores"==========================*/
+--REPETIR CURSORES PARA "PROVEEDORES":
+
+DECLARE LEERPROD_PROVEEDOR SCROLL CURSOR FOR SELECT * FROM PROVEEDORES.Proveedores_Producto
+
+OPEN LEERPROD_PROVEEDOR
+
+FETCH NEXT FROM LEERPROD_PROVEEDOR
+FETCH PRIOR FROM LEERPROD_PROVEEDOR
+FETCH FIRST FROM LEERPROD_PROVEEDOR
+FETCH LAST FROM LEERPROD_PROVEEDOR
+
+CLOSE LEERPROD_PROVEEDOR
+
+DEALLOCATE LEERPROD_PROVEEDOR
+
+GO
 
 
 /*==============================================================*/
@@ -1168,7 +1312,6 @@ DROP PROCEDURE CURSORCLIENTE
 GO
 
 
-
 /*==============================================================*/
 /*=========================FUNCTION=============================*/
 --CREAR UNA FUNCION QUE RETORNA LA TABLA PEDIDOS POR CLIENTE
@@ -1186,8 +1329,22 @@ RETURN(
 )
 GO
 
-
-
---EJECUTAR LA FUNCION
+--EJECUTAR LA FUNCION 'PEDIDOS POR CLIENTE'
 SELECT * FROM PEDIDOS_POR_CLIENTE('C001')
 SELECT * FROM PEDIDOS_POR_CLIENTE('C002')
+
+
+--CREAR UNA FUNCION QUE RETORNA LA TABLA PRODUCTOS POR PROVEEDOR
+GO
+CREATE FUNCTION PRODUCTOS_POR_PROVEEDOR(@id_proveedor char(7)) RETURNS
+TABLE
+AS
+RETURN(SELECT d.nombre_proveedor as NombreProveedor, dt.id_proveedor_producto AS idProducto, dt.nombre_proveedor_producto AS Producto,
+dt.precio_proveedor_producto AS Precio
+FROM PROVEEDORES.Proveedores d, PROVEEDORES.Proveedores_Producto dt WHERE d.id_proveedor=dt.id_proveedor AND d.id_proveedor=@id_proveedor)
+GO
+
+--EJECUTAR LA FUNCION 'PRODUCTOS POR PROVEEDOR'
+SELECT * FROM PRODUCTOS_POR_PROVEEDOR('prov001')
+SELECT * FROM PRODUCTOS_POR_PROVEEDOR('prov002')
+GO
