@@ -8,19 +8,76 @@ GO
 /*==============================================================*/
 /*==========================TRIGGER==============================*/
 --CREAR UN TRIGGER PARA ACTUALIZAR LA FECHA DE ACTUALIZACION DE LA TABLA CLIENTES
-CREATE TRIGGER ACTUALIZAR_FECHA_CLIENTES
-ON VENTAS.Clientes
-AFTER UPDATE
-AS
-BEGIN
-    UPDATE VENTAS.Clientes SET fecha_actualizacion = GETDATE()
-END
-GO  
-
---EJECUTAR EL TRIGGER
-UPDATE VENTAS.Clientes SET nombre_cliente = 'JOEL VARGAS' WHERE id_cliente = 'C001'
+CREATE TABLE VENTAS.Clientes_Auditoria (
+  nro_registro int IDENTITY,
+  id_cliente char(4),
+  tipo_cliente varchar(20) NOT NULL,
+  nombre_cliente varchar(100) NOT NULL,
+  direccion_cliente varchar(200) NOT NULL,
+  telefono_cliente varchar(15) NOT NULL,
+  fecha_actualizacion DATETIME NOT NULL,
+  accion varchar(15) NOT NULL,
+);
 GO
 
+CREATE TRIGGER Ventas_Auditoria
+ON VENTAS.Clientes
+AFTER INSERT, UPDATE, DELETE
+AS
+	BEGIN
+		DECLARE @fecha DATETIME = GETDATE();
+		IF EXISTS(SELECT * FROM inserted)
+			BEGIN
+				IF EXISTS(SELECT * FROM deleted)
+					BEGIN
+						INSERT INTO VENTAS.Clientes_Auditoria
+						SELECT d.id_cliente, d.tipo_cliente, d.nombre_cliente, d.direccion_cliente, d.telefono_cliente, @fecha, 'update'
+						FROM deleted d
+						INNER JOIN inserted i ON d.id_cliente = i.id_cliente;
+						PRINT 'Se ha realizado una actualización exitosa en la tabla de auditoría';
+					END
+				ELSE
+					BEGIN
+						INSERT INTO VENTAS.Clientes_Auditoria
+						SELECT i.id_cliente, i.tipo_cliente, i.nombre_cliente, i.direccion_cliente, i.telefono_cliente, @fecha, 'insert'
+						FROM inserted i;
+						PRINT 'Se ha realizado una inserción exitosa en la tabla de auditoría';
+					END
+			END
+		ELSE
+			BEGIN
+				INSERT INTO VENTAS.Clientes_Auditoria
+				SELECT d.id_cliente, d.tipo_cliente, d.nombre_cliente, d.direccion_cliente, d.telefono_cliente, @fecha, 'delete'
+				FROM deleted d;
+				PRINT 'Se ha realizado una eliminación exitosa en la tabla de auditoría';
+			END
+	END;
+GO
+
+--ELIMINAR TRIGGER
+DROP TRIGGER Ventas_Auditoria
+
+
+--USAR EL TRIGGER PARA INSERTAR UN REGISTRO
+INSERT INTO VENTAS.Clientes
+VALUES 
+('C020', 'Persona Natural', 'John vargas', 'Calle 123', '987876765', GETDATE(), GETDATE());
+
+--USAR EL TRIGGER PARA ACTUALIZAR UN REGISTRO
+UPDATE VENTAS.Clientes
+SET nombre_cliente = 'John perez'
+WHERE id_cliente = 'C020';
+
+
+--USAR EL TRIGGER PARA ELIMINAR UN REGISTRO
+DELETE FROM VENTAS.Clientes
+WHERE id_cliente = 'C020';
+
+
+--VERIFICAR LA EJECUCION DE ACTUALIZAR, ELIMINADO O INSERTADO DE UN REGISTRO
+SELECT * FROM VENTAS.Clientes;
+SELECT * FROM VENTAS.Clientes_Auditoria;
+GO
 
 /*==============================================================*/
 /*===========================VIEWS==============================*/
